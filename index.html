@@ -12,7 +12,7 @@
 <style>
   :root { --bg:#000; --giant:#d4d4d4; --text:#f2f2f2; --muted:#8c8c8c; --line:#222; --pad:clamp(20px,3.2vw,48px); }
   * { box-sizing:border-box; margin:0; padding:0; }
-  html { background:var(--bg); -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+  html { background:var(--bg); -webkit-text-size-adjust:100%; }
   body { background:var(--bg); color:var(--text); font-family:Poppins, Helvetica, Arial, sans-serif; line-height:1.5; }
   a { color:inherit; }
 
@@ -23,7 +23,11 @@
   .giant { font-weight:800; color:var(--giant); letter-spacing:-0.06em; line-height:.82; margin-left:-0.045em; }
   .giant span { display:block; }
   .hero .giant { font-size:clamp(92px,22vw,330px); }
-  .project .giant { font-size:clamp(64px,15.5vw,240px); }
+  /* Projects: name on the side, picture centred in the screen */
+  .project { display:grid; grid-template-columns:minmax(0,4fr) minmax(0,7fr); gap:clamp(24px,4vw,64px); align-items:center; }
+  .side { align-self:stretch; display:flex; flex-direction:column; }
+  .project .giant { font-size:clamp(56px,8.4vw,150px); }
+  .visual { display:flex; justify-content:center; align-items:center; min-width:0; }
 
   .meta { position:absolute; right:var(--pad); top:var(--pad); text-align:right; font-size:13px; line-height:1.6; }
   .meta strong { display:block; font-weight:600; font-size:14px; }
@@ -35,18 +39,20 @@
   .row a { text-decoration:none; }
   .row a:hover { color:var(--text); text-decoration:underline; }
 
-  .shot { display:block; margin-top:clamp(28px,4vw,56px); width:min(100%,1100px); border-radius:14px; overflow:hidden; border:1px solid var(--line); }
-  .shot img { display:block; width:100%; height:auto; }
-  .shot.tall { width:min(100%,780px); }
-  .names { margin-top:clamp(28px,4vw,56px); font-weight:800; letter-spacing:-0.04em; line-height:1.05; color:#5a5a5a;
+  .shot { display:block; max-width:100%; border-radius:14px; overflow:hidden; border:1px solid var(--line); }
+  .shot img { display:block; max-width:100%; max-height:calc(100svh - 2 * var(--pad)); width:auto; height:auto; }
+  .names { font-weight:800; letter-spacing:-0.04em; line-height:1.05; color:#5a5a5a;
            font-size:clamp(26px,3.6vw,52px); max-width:1100px; }
   .names b { color:var(--giant); font-weight:800; }
 
   @media (max-width: 700px) {
     .meta { position:static; text-align:left; margin-top:20px; }
     .hero .giant { font-size:29vw; }
+    .project { grid-template-columns:1fr; }
     .project .giant { font-size:22vw; }
     .project.screen { min-height:auto; padding-top:56px; padding-bottom:64px; }
+    .visual { order:2; }
+    .side .foot { padding-top:24px; }
   }
 </style>
 </head>
@@ -67,36 +73,48 @@
 </section>
 
 <section class="screen project" id="offlist">
-  <h2 class="giant"><span>OFFLIST.</span></h2>
-  <a class="shot tall" href="https://offlist.dk"><img src="assets/offlist.jpg" width="1164" height="1210" alt="The Offlist dashboard: total CO₂ and power use, monthly chart, today's grid prices and CO₂, charges, power mix and car costs."></a>
-  <div class="foot">
-    <p>See what your energy use really means. Your power use and climate footprint, year after year.</p>
-    <div class="row"><a href="https://offlist.dk">offlist.dk →</a></div>
+  <div class="side">
+    <h2 class="giant"><span>OFF</span><span>LIST.</span></h2>
+    <div class="foot">
+      <p>See what your energy use really means. Your power use and climate footprint, year after year.</p>
+      <div class="row"><a href="https://offlist.dk">offlist.dk →</a></div>
+    </div>
+  </div>
+  <div class="visual">
+    <a class="shot" href="https://offlist.dk"><img src="assets/offlist.jpg" width="1140" height="830" alt="The Offlist dashboard: total CO₂ and power use, monthly chart, today's grid prices and CO₂, charges and power mix."></a>
   </div>
 </section>
 
 <section class="screen project" id="flyver">
-  <h2 class="giant"><span>FLYVER.</span></h2>
-  <a class="shot" href="/flyver/"><img src="assets/flyver.jpg" width="1400" height="560" alt="Flyver: all your Gmail accounts in one inbox."></a>
-  <div class="foot">
-    <p>All your Gmail accounts in one inbox, right in Chrome.</p>
-    <div class="row">
-      <a href="https://chromewebstore.google.com/detail/flyver-unified-gmail-mana/eihnabkolnifnoihmhpccgekaaelmmnd">Chrome Web Store →</a>
-      <a href="/flyver/">Website</a>
-      <a href="https://github.com/johanschnor/flyver">GitHub</a>
+  <div class="side">
+    <h2 class="giant"><span>FLY</span><span>VER.</span></h2>
+    <div class="foot">
+      <p>All your Gmail accounts in one inbox, right in Chrome.</p>
+      <div class="row">
+        <a href="https://chromewebstore.google.com/detail/flyver-unified-gmail-mana/eihnabkolnifnoihmhpccgekaaelmmnd">Chrome Web Store →</a>
+        <a href="/flyver/">Website</a>
+        <a href="https://github.com/johanschnor/flyver">GitHub</a>
+      </div>
     </div>
+  </div>
+  <div class="visual">
+    <a class="shot" href="/flyver/"><img src="assets/flyver.jpg" width="1400" height="560" alt="Flyver: all your Gmail accounts in one inbox."></a>
   </div>
 </section>
 
 <section class="screen project" id="secondhand">
-  <h2 class="giant"><span>SECOND</span><span>HAND.</span></h2>
-  <p class="names"><b>Vinted</b> · DBA · <b>Sellpy</b> · Grailed · <b>Vestiaire</b> · Kleinanzeigen · <b>Marrkt</b> · Second Football Shirts · <b>Supersælger</b></p>
-  <div class="foot">
-    <p>One search across nine secondhand sites. Runs on your own computer.</p>
-    <div class="row">
-      <a href="https://github.com/johanschnor/secondhand-search">GitHub →</a>
-      <span>© 2026 johanschnor</span>
+  <div class="side">
+    <h2 class="giant"><span>SECOND</span><span>HAND.</span></h2>
+    <div class="foot">
+      <p>One search across nine secondhand sites. Runs on your own computer.</p>
+      <div class="row">
+        <a href="https://github.com/johanschnor/secondhand-search">GitHub →</a>
+        <span>© 2026 johanschnor</span>
+      </div>
     </div>
+  </div>
+  <div class="visual">
+    <p class="names"><b>Vinted</b> · DBA · <b>Sellpy</b> · Grailed · <b>Vestiaire</b> · Kleinanzeigen · <b>Marrkt</b> · Second Football Shirts · <b>Supersælger</b></p>
   </div>
 </section>
 
