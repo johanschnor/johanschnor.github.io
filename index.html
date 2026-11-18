@@ -27,6 +27,8 @@
   .project { display:grid; grid-template-columns:auto minmax(0,1fr); gap:clamp(24px,4vw,64px); }
   .project .giant.vertical { writing-mode:vertical-rl; transform:rotate(180deg); white-space:nowrap; margin:0;
     line-height:.8; font-size:min(calc((100svh - 2 * var(--pad)) / var(--len)), 300px); align-self:center; }
+  .project.upright { grid-template-columns:minmax(0,1fr); gap:clamp(24px,3vw,48px); }
+  .project .giant.flat { white-space:nowrap; font-size:min(calc((100vw - 2 * var(--pad)) / var(--len)), 240px); }
   .content { display:flex; flex-direction:column; min-width:0; }
   .visual { flex:1; display:flex; justify-content:center; align-items:center; min-width:0; }
   .content .foot { padding-top:24px; }
@@ -52,6 +54,7 @@
     .meta { position:static; text-align:left; margin-top:20px; }
     .hero .giant { font-size:29vw; }
     .project { grid-template-columns:1fr; gap:24px; }
+    .project .giant.flat { font-size:calc((100vw - 2 * var(--pad)) / var(--len)); }
     .project .giant.vertical { writing-mode:horizontal-tb; transform:none; font-size:calc((100vw - 2 * var(--pad)) / var(--len)); align-self:start; }
     .project.screen { min-height:auto; padding-top:56px; padding-bottom:64px; }
     .shot img { max-height:none; }
@@ -88,8 +91,8 @@
   </div>
 </section>
 
-<section class="screen project" id="flyver">
-  <h2 class="giant vertical" style="--len:3.65">FLYVER.</h2>
+<section class="screen project upright" id="flyver">
+  <h2 class="giant flat" style="--len:3.65">FLYVER.</h2>
   <div class="content">
     <div class="visual">
       <a class="shot" href="/flyver/"><img src="assets/flyver.jpg" width="1400" height="560" alt="Flyver: all your Gmail accounts in one inbox."></a>
@@ -105,8 +108,8 @@
   </div>
 </section>
 
-<section class="screen project" id="secondhand">
-  <h2 class="giant vertical" style="--len:6.9">SECONDHAND.</h2>
+<section class="screen project upright" id="secondhand">
+  <h2 class="giant flat" style="--len:6.9">SECONDHAND.</h2>
   <div class="content">
     <div class="visual">
       <p class="names"><b>Vinted</b> · DBA · <b>Sellpy</b> · Grailed · <b>Vestiaire</b> · Kleinanzeigen · <b>Marrkt</b> · Second Football Shirts · <b>Supersælger</b></p>
